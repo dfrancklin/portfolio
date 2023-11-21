@@ -1,9 +1,61 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+
+import Header from "../components/layout/Header.astro";
+import TechCloud from "../components/layout/TechCloud.astro";
+
+const since = 2011;
+const currentYear = new Date().getFullYear();
 ---
 
-<Layout title="Portfólio">
-	<main>
-		<h1>Portfólio</h1>
-	</main>
+<Layout title="Diego Francklin Martins dos Santos | Portfólio">
+  <main class="flex min-h-[100dvh] flex-col">
+    <Header />
+
+    <div
+      class="container mx-auto flex flex-1 flex-col items-center gap-8 px-8 py-16 lg:flex-row"
+    >
+      <div class="mx-auto max-w-xl flex-1 space-y-8">
+        <div class="badge badge-success">Senior Full Stack Developer</div>
+
+        <h1 class="text-5xl font-semibold uppercase">
+          Diego Francklin Martins dos Santos
+        </h1>
+
+        <p>
+          Ao longo da minha carreira, participei do ciclo de vida completo de
+          desenvolvimento de aplicações de sucesso utilizando principalmente
+          Java com Spring Framework. Comprometido com o desenvolvimento
+          profissional contínuo, aprimorando continuamente minhas habilidades
+          técnicas para trazer o melhor valor para minha equipe e para os
+          clientes.
+        </p>
+
+        <p>
+          Tenho experiência prática no desenvolvimento de projetos escaláveis
+          utilizando arquitetura de microsserviços, API REST e Cloud (AWS) e sou
+          flexível para trabalhar em sistemas operacionais Linux e Windows.
+        </p>
+
+        <div class="flex flex-wrap gap-8">
+          <div class="flex items-center gap-4">
+            <span class="text-6xl">{currentYear - since}</span>
+            <span class="uppercase text-stone-400">
+              Anos de <br /> experiência
+            </span>
+          </div>
+
+          <div>
+            <a href="#" class="btn btn-lg btn-wide btn-success">Download CV</a>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="mx-auto flex w-full max-w-xl flex-1 items-center justify-center"
+      >
+        <TechCloud />
+      </div>
+    </div>
+  </main>
 </Layout>

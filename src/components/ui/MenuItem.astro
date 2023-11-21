@@ -1,0 +1,22 @@
+---
+interface Props {
+  active?: boolean;
+  href?: string;
+  target?: string;
+}
+
+const { active = false, href = "#", target } = Astro.props;
+---
+
+<li>
+  <a
+    href={href}
+    target={target}
+    class="hover:text-green-500"
+    class:list={[{ "text-success": active }]}
+  >
+    {active && "<"}
+    <slot />
+    {active && ">"}
+  </a>
+</li>
