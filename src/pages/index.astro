@@ -1,67 +1,69 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
+import Footer from "../components/layout/Footer.astro";
 import Header from "../components/layout/Header.astro";
+import Resume from "../components/layout/Resume.astro";
 import TechCloud from "../components/layout/TechCloud.astro";
 
-const since = 2011;
+import type { MenuItem as MenuItemType } from "../types/MenuItem";
+
 const currentYear = new Date().getFullYear();
+const whatsAppLink = "https://wa.me/5515991456918";
+const cvLink = "/Diego Francklin Martins dos Santos | CV | PT.pdf";
+const email = "dfrancklin23@gmail.com";
+
+const navigationItems: MenuItemType[] = [
+  // { name: "Home", href: "#", active: true },
+  // { name: "Portfólio", href: "#" },
+  // { name: "Experiência", href: "#" },
+  // { name: "Contato", href: "#" },
+];
+
+const socialItems = [
+  {
+    name: "GitHub",
+    icon: "mdi:github",
+    href: "https://github.com/dfrancklin",
+    target: "_blank",
+  },
+  {
+    name: "Email",
+    icon: "mdi:email-outline",
+    href: `mailto:${email}`,
+    target: "_blank",
+  },
+];
 ---
 
 <Layout title="Diego Francklin Martins dos Santos | Portfólio">
   <main class="flex min-h-[100dvh] flex-col">
-    <Header />
+    <Header navigation={navigationItems} social={socialItems} />
 
     <div
-      class="container mx-auto flex flex-1 flex-col items-center gap-8 px-8 py-16 lg:flex-row"
+      class="container mx-auto flex flex-1 flex-col items-center gap-16 px-8 py-16 lg:flex-row"
     >
       <div class="mx-auto max-w-xl flex-1 space-y-8">
-        <div class="badge badge-success">Senior Full Stack Developer</div>
-
-        <h1 class="text-5xl font-semibold uppercase">
-          Diego Francklin Martins dos Santos
-        </h1>
-
-        <p>
-          Ao longo da minha carreira, participei do ciclo de vida completo de
-          desenvolvimento de aplicações de sucesso utilizando principalmente
-          Java com Spring Framework. Comprometido com o desenvolvimento
-          profissional contínuo, aprimorando continuamente minhas habilidades
-          técnicas para trazer o melhor valor para minha equipe e para os
-          clientes.
-        </p>
-
-        <p>
-          Tenho experiência prática no desenvolvimento de projetos escaláveis
-          utilizando arquitetura de microsserviços, API REST e Cloud (AWS) e sou
-          flexível para trabalhar em sistemas operacionais Linux e Windows.
-        </p>
-
-        <div class="flex flex-wrap gap-8">
-          <div class="flex items-center gap-4">
-            <span class="text-6xl">{currentYear - since}</span>
-            <span class="uppercase text-stone-400">
-              Anos de <br /> experiência
-            </span>
-          </div>
-
-          <div>
-            <a
-              href="/Diego Francklin Martins dos Santos | CV | PT.pdf"
-              target="_blank"
-              class="btn btn-lg btn-wide btn-success"
-            >
-              Download CV
-            </a>
-          </div>
-        </div>
+        <Resume
+          currentYear={currentYear}
+          whatsAppLink={whatsAppLink}
+          cvLink={cvLink}
+        />
       </div>
 
       <div
-        class="mx-auto flex w-full max-w-xl flex-1 items-center justify-center"
+        class="mx-auto flex w-full max-w-lg flex-1 items-center justify-center"
       >
         <TechCloud />
       </div>
     </div>
   </main>
+
+  <Footer
+    navigation={navigationItems}
+    social={socialItems}
+    currentYear={currentYear}
+    whatsAppLink={whatsAppLink}
+    email={email}
+  />
 </Layout>
