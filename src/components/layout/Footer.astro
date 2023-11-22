@@ -1,0 +1,83 @@
+---
+interface Props {
+  navigation: MenuItemType[];
+  social: MenuItemType[];
+  currentYear: number;
+  whatsAppLink: string;
+  email: string;
+}
+
+import Icon from "astro-iconify";
+
+import MenuItem from "../ui/MenuItem.astro";
+
+import type { MenuItem as MenuItemType } from "../../types/MenuItem";
+
+const { navigation, social, currentYear, whatsAppLink, email } = Astro.props;
+---
+
+<footer class="bg-stone-900 px-2 py-16">
+  <div class="space-y-16">
+    <div class="flex flex-wrap justify-between gap-16">
+      <div class="max-w-2xl space-y-8 px-4">
+        <h3 class="text-3xl xl:text-4xl">
+          Vamos construir projetos incríveis?
+        </h3>
+
+        <p class="text-3xl">
+          Me <a class="link-success link" href={whatsAppLink} target="_blank">
+            manda um io!
+          </a>
+        </p>
+      </div>
+
+      <div class="space-y-8 px-4">
+        <div class="space-y-4 text-stone-400">
+          <h4 class="mb-8 text-xs">Informações</h4>
+          <p class="text-lg">Sorocaba &mdash; SP</p>
+          <a
+            class="btn btn-outline btn-success btn-lg text-xl lg:text-2xl xl:text-3xl"
+            href={`mailto:${email}`}
+            target="_blank"
+          >
+            {email}
+          </a>
+        </div>
+
+        <ul class="menu px-1">
+          {
+            navigation.map((item) => (
+              <MenuItem href={item.href} active={item.active}>
+                {item.name}
+              </MenuItem>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div
+      class="flex flex-col flex-wrap items-center gap-4 md:flex-row md:items-end md:gap-16"
+    >
+      <h1 class="ml-4 whitespace-nowrap font-sans text-3xl">
+        <strong>Diego</strong>
+         Santos
+      </h1>
+
+      <p class="flex-1 text-stone-400">
+        &copy; {currentYear} Todos os direitos reservados
+      </p>
+
+      <ul class="menu menu-horizontal px-1">
+        {
+          social.map((item) => (
+            <MenuItem href={item.href} target={item.target}>
+              <Icon name={item.icon} class="w-5" />
+              <span class="hidden md:inline">{item.name}</span>
+            </MenuItem>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</footer>
