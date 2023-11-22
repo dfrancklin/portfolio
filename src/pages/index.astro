@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 
 import Footer from "../components/layout/Footer.astro";
 import Header from "../components/layout/Header.astro";
-import Resume from "../components/layout/Resume.astro";
+import Intro from "../components/layout/Intro.astro";
 import TechCloud from "../components/layout/TechCloud.astro";
 
 import type { MenuItem as MenuItemType } from "../types/MenuItem";
@@ -44,7 +44,7 @@ const socialItems = [
       class="container mx-auto flex flex-1 flex-col items-center gap-16 px-8 py-16 lg:flex-row"
     >
       <div class="mx-auto max-w-xl flex-1 space-y-8">
-        <Resume
+        <Intro
           currentYear={currentYear}
           whatsAppLink={whatsAppLink}
           cvLink={cvLink}
