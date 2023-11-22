@@ -2,6 +2,7 @@
 interface Props {
   position: string;
   size: number;
+  mobileSize: number;
   color: string;
   icon: string;
   title: string;
@@ -9,12 +10,17 @@ interface Props {
 
 import Icon from "astro-iconify";
 
-const { position, size, color, icon, title } = Astro.props;
+const { position, size, mobileSize, color, icon, title } = Astro.props;
 ---
 
 <div
-  class="!absolute flex aspect-square -translate-x-2/4 -translate-y-2/4 items-center justify-center rounded-full p-4 shadow-lg transition-all lg:tooltip hover:scale-110 hover:shadow-2xl"
-  class:list={[position, `h-${size} w-${size}`, color]}
+  class="tooltip !absolute flex aspect-square -translate-x-2/4 -translate-y-2/4 items-center justify-center rounded-full p-4 shadow-lg transition-all hover:scale-110 hover:shadow-2xl"
+  class:list={[
+    position,
+    `h-${mobileSize} w-${mobileSize}`,
+    `sm:h-${size} sm:w-${size}`,
+    color,
+  ]}
   data-tip={title}
 >
   <Icon name={icon} class="h-full w-full" />
