@@ -1,0 +1,56 @@
+---
+interface Props {
+  currentYear: number;
+  whatsAppLink: string;
+  cvLink: string;
+}
+
+const since = 2011;
+
+const { currentYear, whatsAppLink, cvLink } = Astro.props;
+---
+
+<div class="badge badge-success">Senior Full Stack Developer</div>
+
+<h1 class="text-5xl font-semibold uppercase">
+  Diego Francklin Martins dos Santos
+</h1>
+
+<p>
+  Ao longo da minha carreira, participei do ciclo de vida completo de
+  desenvolvimento de aplicações de sucesso utilizando principalmente Java com
+  Spring Framework. Comprometido com o desenvolvimento profissional contínuo,
+  aprimorando continuamente minhas habilidades técnicas para trazer o melhor
+  valor para minha equipe e para os clientes.
+</p>
+
+<p>
+  Tenho experiência prática no desenvolvimento de projetos escaláveis utilizando
+  arquitetura de microsserviços, API REST e Cloud (AWS) e sou flexível para
+  trabalhar em sistemas operacionais Linux e Windows.
+</p>
+
+<p>
+  <a
+    href={whatsAppLink}
+    class="link-success link font-bold uppercase"
+    target="_blank"
+  >
+    Vamos conversar!
+  </a>
+</p>
+
+<div class="flex flex-wrap gap-8">
+  <div class="flex items-center gap-4">
+    <span class="text-6xl">{currentYear - since}</span>
+    <span class="uppercase text-stone-400">
+      Anos de <br /> experiência
+    </span>
+  </div>
+
+  <div>
+    <a href={cvLink} target="_blank" class="btn btn-success btn-lg btn-wide">
+      Download CV
+    </a>
+  </div>
+</div>
