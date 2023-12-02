@@ -4,7 +4,9 @@ import TechIcon from "@/components/ui/TechIcon.astro";
 import { techList } from "@/data";
 ---
 
-<div class="relative aspect-square h-full w-full">
+<div
+  class="group relative aspect-square h-full w-full rounded-full hover:[animation-play-state:paused] md:motion-safe:animate-spin-slow"
+>
   <div class="h-full w-full rounded-full bg-stone-900/50 shadow-lg"></div>
   {techList.map((tech) => <TechIcon {...tech} />)}
   <!-- bug fix: force tailwind generate these classes -->
