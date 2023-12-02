@@ -1,13 +1,5 @@
 ---
-interface Props {
-  currentYear: number;
-  whatsAppLink: string;
-  cvLink: string;
-}
-
-const since = 2011;
-
-const { currentYear, whatsAppLink, cvLink } = Astro.props;
+import { currentYear, cvLink, startYear, whatsAppLink } from "@/data";
 ---
 
 <div class="badge badge-success">Senior Full Stack Developer</div>
@@ -42,7 +34,7 @@ const { currentYear, whatsAppLink, cvLink } = Astro.props;
 
 <div class="flex flex-wrap gap-8">
   <div class="flex items-center gap-4">
-    <span class="text-6xl">{currentYear - since}</span>
+    <span class="text-6xl">{currentYear - startYear}</span>
     <span class="uppercase text-stone-400">
       Anos de <br /> experiência
     </span>

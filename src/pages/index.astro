@@ -1,54 +1,17 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from "@/layouts/Layout.astro";
 
-import Footer from "../components/layout/Footer.astro";
-import Header from "../components/layout/Header.astro";
-import Intro from "../components/layout/Intro.astro";
-import TechCloud from "../components/layout/TechCloud.astro";
-
-import type { MenuItem as MenuItemType } from "../types/MenuItem";
-
-const currentYear = new Date().getFullYear();
-const whatsAppLink = "https://wa.me/5515991456918";
-const cvLink = "/Diego Francklin Martins dos Santos | CV | PT.pdf";
-const email = "dfrancklin23@gmail.com";
-
-const navigationItems: MenuItemType[] = [
-  // { name: "Home", href: "#", active: true },
-  // { name: "Portfólio", href: "#" },
-  // { name: "Experiência", href: "#" },
-  // { name: "Contato", href: "#" },
-];
-
-const socialItems = [
-  {
-    name: "GitHub",
-    icon: "mdi:github",
-    href: "https://github.com/dfrancklin",
-    target: "_blank",
-  },
-  {
-    name: "Email",
-    icon: "mdi:email-outline",
-    href: `mailto:${email}`,
-    target: "_blank",
-  },
-];
+import Intro from "@/components/layout/Intro.astro";
+import TechCloud from "@/components/layout/TechCloud.astro";
 ---
 
-<Layout title="Diego Francklin Martins dos Santos | Portfólio">
+<Layout title="Diego Francklin Martins dos Santos">
   <main class="flex min-h-[100dvh] flex-col">
-    <Header navigation={navigationItems} social={socialItems} />
-
     <div
       class="container mx-auto flex flex-1 flex-col items-center gap-16 px-8 py-16 lg:flex-row"
     >
       <div class="mx-auto max-w-xl flex-1 space-y-8">
-        <Intro
-          currentYear={currentYear}
-          whatsAppLink={whatsAppLink}
-          cvLink={cvLink}
-        />
+        <Intro />
       </div>
 
       <div
@@ -58,12 +21,4 @@ const socialItems = [
       </div>
     </div>
   </main>
-
-  <Footer
-    navigation={navigationItems}
-    social={socialItems}
-    currentYear={currentYear}
-    whatsAppLink={whatsAppLink}
-    email={email}
-  />
 </Layout>

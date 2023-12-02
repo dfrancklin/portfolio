@@ -1,67 +1,54 @@
 ---
-interface Props {
-  navigation: MenuItemType[];
-  social: MenuItemType[];
-}
-
 import { Icon } from "astro-iconify";
 
-import MenuItem from "../ui/MenuItem.astro";
+import MenuItem from "@/components/ui/MenuItem.astro";
 
-import type { MenuItem as MenuItemType } from "../../types/MenuItem";
-
-const { navigation, social } = Astro.props;
+import { navigation, social } from "@/data";
 ---
 
 <header class="bg-gradient-to-b from-stone-900 to-transparent">
-  <div class="navbar gap-4">
-    <div class="flex-none">
-      {
-        !!navigation.length && (
-          <div class="dropdown lg:hidden">
-            <label tabindex="0" class="btn btn-circle btn-ghost">
-              <Icon name="heroicons:bars-3" class="w-6" />
-            </label>
+  <div class="container mx-auto px-6">
+    <div class="navbar gap-4">
+      <div class="flex-none">
+        <div class="dropdown mr-4 lg:hidden">
+          <label tabindex="0" class="btn btn-circle btn-ghost">
+            <Icon name="heroicons:bars-3" class="w-6" />
+          </label>
+          <ul
+            tabindex="0"
+            class="menu dropdown-content menu-sm z-[1] mt-3 w-56 rounded-box bg-stone-900 p-2 shadow"
+          >
+            {
+              navigation.map((item) => (
+                <MenuItem {...item}>{item.name}</MenuItem>
+              ))
+            }
+          </ul>
+        </div>
 
-            <ul
-              tabindex="0"
-              class="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-stone-900 p-2 shadow"
-            >
-              {navigation.map((item) => (
-                <MenuItem href={item.href}>{item.name}</MenuItem>
-              ))}
-            </ul>
-          </div>
-        )
-      }
+        <h1 class="whitespace-nowrap font-sans text-xl lg:text-3xl">
+          <strong>Diego</strong>
+           Santos
+        </h1>
+      </div>
 
-      <h1 class="ml-4 whitespace-nowrap font-sans text-3xl">
-        <strong>Diego</strong>
-         Santos
-      </h1>
-    </div>
+      <div class="flex-1">
+        <ul class="menu menu-horizontal hidden px-1 lg:inline-flex">
+          {navigation.map((item) => <MenuItem {...item}>{item.name}</MenuItem>)}
+        </ul>
+      </div>
 
-    <div class="flex-1">
-      <ul class="menu menu-horizontal hidden px-1 lg:inline-flex">
-        {
-          navigation.map((item) => (
-            <MenuItem href={item.href}>{item.name}</MenuItem>
-          ))
-        }
-      </ul>
-    </div>
-
-    <div class="flex-none">
-      <ul class="menu menu-horizontal px-1">
-        {
-          social.map((item) => (
-            <MenuItem href={item.href} target={item.target}>
-              <Icon name={item.icon} class="w-5" />
-              <span class="hidden md:inline">{item.name}</span>
-            </MenuItem>
-          ))
-        }
-      </ul>
+      <div class="flex-none">
+        <ul class="menu menu-horizontal px-1">
+          {
+            social.map((item) => (
+              <MenuItem {...item}>
+                <span class="hidden xl:inline">{item.name}</span>
+              </MenuItem>
+            ))
+          }
+        </ul>
+      </div>
     </div>
   </div>
 </header>
