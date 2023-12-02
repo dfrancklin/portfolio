@@ -1,22 +1,35 @@
 ---
-interface Props {
-  active?: boolean;
-  href?: string;
-  target?: string;
+import Icon from "astro-iconify";
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"a"> {
+  badge?: string;
+  icon?: string;
 }
 
-const { active = false, href = "#", target } = Astro.props;
+const { href = "#", icon, badge, ...attrs } = Astro.props;
+const active = href === Astro.url.pathname;
 ---
 
 <li>
   <a
     href={href}
-    target={target}
-    class="hover:text-green-500"
+    class="group px-2 hover:bg-success hover:text-success-content md:px-4"
     class:list={[{ "text-success": active }]}
+    {...attrs}
   >
+    {icon && <Icon name={icon} class="w-5" />}
+
     {active && "<"}
     <slot />
     {active && ">"}
+
+    {
+      badge && (
+        <span class="badge badge-info badge-outline group-hover:badge-ghost">
+          {badge}
+        </span>
+      )
+    }
   </a>
 </li>
