@@ -1,0 +1,19 @@
+---
+import type { Course } from "@/types";
+
+interface Props {
+  course: Course;
+}
+
+const { course } = Astro.props;
+---
+
+<div class="card bg-white/5 shadow-xl">
+  <div class="card-body">
+    <h3 class="card-title">{course.name}</h3>
+
+    <p>{course.school}</p>
+
+    <time class="text-sm italic">{course.to}</time>
+  </div>
+</div>

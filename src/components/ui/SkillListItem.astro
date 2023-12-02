@@ -1,0 +1,36 @@
+---
+import Icon from "astro-iconify";
+
+import { currentYear } from "@/data";
+
+import type { Skill } from "@/types";
+
+interface Props {
+  skill: Skill;
+}
+
+const { skill } = Astro.props;
+---
+
+<li class="flex items-center gap-2">
+  <div
+    class="rounded border border-white/10 p-2 shadow-xl"
+    class:list={[skill.bg]}
+  >
+    <Icon name={skill.icon} class="h-14 w-14" />
+  </div>
+
+  <div class="space-y-2">
+    <p class="text-xl font-bold uppercase">{skill.name}</p>
+
+    {skill.observation && <p class="text-sm italic">{skill.observation}</p>}
+
+    <p>
+      <span>{skill.level}</span>
+       &mdash;
+      <time class="text-sm">
+        {currentYear - skill.startYear} anos de experiência
+      </time>
+    </p>
+  </div>
+</li>

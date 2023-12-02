@@ -1,0 +1,65 @@
+---
+import Layout from "@/layouts/Layout.astro";
+
+import CourseCard from "@/components/ui/CourseCard.astro";
+import ExperienceInfo from "@/components/ui/ExperienceInfo.astro";
+import ScrollSpy from "@/components/ui/ScrollSpy.astro";
+import SkillList from "@/components/ui/SkillList.astro";
+import Timeline from "@/components/ui/Timeline.astro";
+import TimelineItem from "@/components/ui/TimelineItem.astro";
+
+import { courses, experiences, skills } from "@/data";
+---
+
+<Layout title="Diego Francklin Martins dos Santos">
+  <ScrollSpy>
+    <section id="professional-experience" class="px-8 py-16">
+      <div class="container mx-auto space-y-8">
+        <h2 class="text-center text-4xl font-semibold uppercase">
+          Experiência Profissional
+        </h2>
+
+        <Timeline>
+          {
+            experiences.map((experience, i) => (
+              <TimelineItem
+                align={i % 2 ? "end" : "start"}
+                last={i === experiences.length - 1}
+              >
+                <ExperienceInfo experience={experience} />
+              </TimelineItem>
+            ))
+          }
+        </Timeline>
+      </div>
+    </section>
+
+    <section id="education" class="bg-stone-900 px-8 py-16">
+      <div class="container mx-auto space-y-8">
+        <h2 class="text-center text-4xl font-semibold uppercase">
+          Formação Acadêmica
+        </h2>
+
+        <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+          {courses.map((course) => <CourseCard course={course} />)}
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="px-8 py-16">
+      <div class="container mx-auto space-y-8">
+        <h2 class="text-center text-4xl font-semibold uppercase">
+          Habilidades Técnicas
+        </h2>
+
+        <div class="columns-1 gap-16 space-y-16 md:columns-2 xl:columns-3">
+          {
+            skills.map((skill) => (
+              <SkillList name={skill.name} list={skill.list} />
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </ScrollSpy>
+</Layout>

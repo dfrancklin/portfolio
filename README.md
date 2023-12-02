@@ -17,7 +17,7 @@ This is the list of technologies I used to build this project and what each one 
 
 This is a work in progress and I have plans to further expand this project:
 
-- [ ] Add a "Experience" section
+- [x] Add a "Experience" section
 - [ ] Add a "Projects" section
 - [ ] Connect with a CMS
 - [ ] Add I18N

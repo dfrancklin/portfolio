@@ -1,0 +1,79 @@
+<div class="flex items-start gap-10">
+  <aside
+    id="scroll-spy-indicators"
+    class="sticky top-1/2 z-50 hidden -translate-y-1/2 px-8 md:block"
+  >
+    <ul class="menu gap-2 rounded-box bg-white/5 shadow-xl"></ul>
+  </aside>
+
+  <div class="ml-0 flex-1 md:-ml-40">
+    <slot />
+  </div>
+</div>
+
+<script>
+  const indicatorList = document.querySelector("#scroll-spy-indicators ul");
+  const sections = document.querySelectorAll("section[id]");
+
+  const indicators: Record<string, Element> = {};
+  const options = {
+    root: null,
+    rootMargin: "0% 0% -35%",
+    threshold: buildThresholdList(),
+  };
+  const sectionObserver = new IntersectionObserver(callback, options);
+
+  sections.forEach((section) => {
+    indicators[section.id] = createIndicator(section);
+    section.classList.add("md:pl-32");
+    sectionObserver.observe(section);
+  });
+
+  function createIndicator(section: Element) {
+    const listItem = document.createElement("li");
+    const indicator = document.createElement("a");
+
+    indicator.href = `#${section.id}`;
+    indicator.dataset.tip = section.querySelector("h2")?.textContent || "";
+    indicator.classList.add(
+      "tooltip",
+      "tooltip-right",
+      "flex",
+      "aspect-square",
+      "items-center",
+      "p-3",
+    );
+    indicator.innerHTML =
+      '<svg viewBox="0 0 24 24" class="h-4 w-4" astro-icon="mdi:circle"><path fill="currentColor" d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"></path></svg>';
+
+    listItem.append(indicator);
+    indicatorList?.append(listItem);
+
+    return indicator;
+  }
+
+  function buildThresholdList() {
+    const thresholds = [];
+    const numSteps = 20;
+
+    for (let i = 0; i <= numSteps; i++) {
+      const ratio = i / numSteps;
+      thresholds.push(ratio);
+    }
+
+    return thresholds;
+  }
+
+  function callback(entries: IntersectionObserverEntry[]) {
+    entries.forEach(({ target, intersectionRatio, isIntersecting }) => {
+      if (isIntersecting && intersectionRatio > 0.05) {
+        indicators[target.id]?.classList.add("!text-success", "bg-stone-900");
+      } else {
+        indicators[target.id]?.classList.remove(
+          "!text-success",
+          "bg-stone-900",
+        );
+      }
+    });
+  }
+</script>

@@ -1,0 +1,29 @@
+---
+import { Markdown } from "@astropub/md";
+
+import type { Experience } from "@/types";
+
+interface Props {
+  experience: Experience;
+}
+
+const { experience } = Astro.props;
+---
+
+<time class="text-sm italic opacity-70">
+  {experience.from} &mdash; {experience.to}
+</time>
+
+<h3 class="text-2xl font-black uppercase text-primary">
+  {experience.jobTitle}
+</h3>
+
+{
+  experience.company && (
+    <h4 class="text-lg font-semibold italic">{experience.company}</h4>
+  )
+}
+
+<div class="max-w-xl space-y-2 text-white/80">
+  <Markdown of={experience.description} />
+</div>

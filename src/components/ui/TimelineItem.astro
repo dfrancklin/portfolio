@@ -1,0 +1,28 @@
+---
+import Icon from "astro-iconify";
+
+interface Props {
+  align?: "start" | "end";
+  last?: boolean;
+}
+
+const { align = "start", last = false } = Astro.props;
+---
+
+<li>
+  <div class="timeline-middle">
+    <Icon name="mdi:check-circle" class="h-5" />
+  </div>
+
+  <div
+    class="timeline-box space-y-4 bg-stone-900 p-4"
+    class:list={{
+      "timeline-start lg:text-end": align === "start",
+      "timeline-end": align === "end",
+    }}
+  >
+    <slot />
+  </div>
+
+  {!last && <hr class="bg-stone-900" />}
+</li>
