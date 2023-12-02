@@ -47,9 +47,7 @@ const { navigation, social, currentYear, whatsAppLink, email } = Astro.props;
         <ul class="menu px-1">
           {
             navigation.map((item) => (
-              <MenuItem href={item.href} active={item.active}>
-                {item.name}
-              </MenuItem>
+              <MenuItem href={item.href}>{item.name}</MenuItem>
             ))
           }
         </ul>
